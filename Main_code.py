@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 def adicionar():
     adi = 1
     #função para adição de livros 
@@ -35,4 +36,24 @@ while result == "S":
 #boa noite flor da noite
 
 =======
+>>>>>>> 674c66931953d75eecb588b5abaa1d0c7f1d4f7d
+=======
+biblioteca = {}
+
+result = "S"
+
+while result == "S":
+    mod = int(input("Precione o numero correspondente a alteração que deseja:\n1-Adicionar\n2-Remover\n3-Alterar\n4-Ler"))
+    if mod == 1:
+        option_1 = input("Voce deseja criar outra categoria?")
+        if option_1 == "S":
+            
+            
+
+
+
+
+
+
+
 >>>>>>> 674c66931953d75eecb588b5abaa1d0c7f1d4f7d
