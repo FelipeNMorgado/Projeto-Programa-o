@@ -2,6 +2,8 @@ import os
 
 biblioteca = {}
 preco_total = 0
+lista_cat = []
+cont = 0
 
 while True:
     print("--" * 40)
@@ -13,11 +15,19 @@ while True:
         livro_autor = input("Autor do livro: ")
         livro_preco = int(input("Preço do livro: "))
         livro = {"nome": livro_name, "autor": livro_autor, "preço": livro_preco}
-
+        
+        
         if cat_add in biblioteca:
             biblioteca[cat_add].append(livro)
         else:
             biblioteca[cat_add] = [livro]
+        
+        if cat_add in lista_cat:
+            continue
+        else:
+            lista_cat.append(cat_add)
+        
+        cont += 1
 
         print("Livro adicionado com sucesso!")
         print(biblioteca)
@@ -30,12 +40,21 @@ while True:
         
     elif mod == 3:
         print("Opção de atualizar. Adicione a lógica conforme necessário.")
+        # Adicione aqui a lógica para alterar as informações do livro
     
     elif mod == 4:
         os.system("cls")
+        print("Categorias disponiveis: \n")
+        
+        for x in range(cont):
+            print('-',lista_cat[x])
+            
+        print()
         cat_visualizar = input("Digite qual a categoria do livro que você deseja visualizar: ")
+        
         if cat_visualizar in biblioteca:
             print(f"\nCategoria: {cat_visualizar}")
+           
             for livro in biblioteca[cat_visualizar]:
                 print(f"Nome: {livro['nome']}")
                 
