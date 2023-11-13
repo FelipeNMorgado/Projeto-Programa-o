@@ -1,44 +1,66 @@
+import os
+os.system("cls")
+
 biblioteca = {}
+lista_cat = []
 preco_total = 0
+cont = 0
 
 while True:
-    mod = int(input("Pressione o número correspondente à alteração que deseja:\n1-Adicionar\n2-Remover\n3-Alterar\n4-Visualizar\n5-Carrinho\n6-Parar\n"))
+    
+    print("--"*40)
+    mod = int(input("Pressione o número correspondente a alteração que deseja:\n\n[1]-Adicionar\n[2]-Excluir\n[3]-Atualizar\n[4]-Visualizar\n[5]-Dinheiro Gasto\n[6]-Parar\n\nDigite aqui a sua opção: "))
+    
 
     if mod == 1:
-        option_1 = input("Você deseja adicionar uma categoria ('C') ou um Livro ('L')?")
-        if option_1 == "C":
-            cat_add = input("Qual a categoria que deseja adicionar?")
-            biblioteca[cat_add] = []
-            print(biblioteca)
-        elif option_1 == "L":
-            livro_name = input("Nome do livro:")
-            livro_autor = input("Autor do livro:")
-            livro_categoria = input("Categoria do livro:")
-            livro_preco = int(input("Preço do livro:"))
-            livro = {'nome': livro_name, 'autor': livro_autor, 'preco': livro_preco}
-            
-            if livro_categoria in biblioteca:
-                biblioteca[livro_categoria].append(livro)
-            else:
-                biblioteca[livro_categoria] = [livro]
-            
-            print(biblioteca)
-            preco_total += livro_preco
+        
+        cat_add = input("Categoria do livro: ")
+        livro_name = input("Nome do livro: ")
+        livro_autor = input("Autor do livro: ")
+        livro_preco = int(input("Preço do livro: "))
+        livro = {"nome": livro_name, "autor": livro_autor, "preço": livro_preco}
+        if cat_add in lista_cat:
+            continue
         else:
-            print("Operação Inválida")
+            lista_cat.append(cat_add)
+            
+        if cat_add in biblioteca:
+                biblioteca[cat_add].append(livro)
+        else:
+                biblioteca[cat_add] = [livro]
+        cont += 1
+            
+        print(biblioteca)
+        preco_total += livro_preco
+        
+    elif mod == 2:
+        
+        option_2 = input("Digite o nome do livro que você deseja excluir: ")        
 
+    elif mod == 3:
+        print()
+
+    elif mod == 4:
+        print("Categorias disponiveis")
+        for x in range(cont):
+            print('-',lista_cat[x],'\n')
+        cat_visualizar = input("Digite qual é categoria do livro que você deseja visualizar: ")
+        if cat_visualizar in biblioteca:
+            print(f"Categoria: {cat_visualizar}")
+            for livro in biblioteca[cat_visualizar]:
+                 print(f"{livro['nome']}")
+                 cont+=1
+                 
+        #print(categoria)
+        #print()
+        #input("Digite qual o livro que você deseja visualizar: ")
+    
+    elif mod == 5:
+        print()
+    
     elif mod == 6:
         print("Saindo do programa. Obrigado!")
         break
 
-
-print(biblioteca)
-
-            
-
-
-
-
-
-
-
+    else:
+        print("Operação Inválida")
