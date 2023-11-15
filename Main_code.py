@@ -30,7 +30,6 @@ while True:
         cont += 1
 
         print("Livro adicionado com sucesso!")
-        print(biblioteca)
         preco_total += livro_preco
     
     elif mod == 2:
@@ -71,7 +70,7 @@ while True:
             print(f"A categoria {cat_visualizar} não foi encontrada.")
     
     elif mod == 5:
-        print("Opção de dinheiro gasto. Adicione a lógica conforme necessário.")
+        print("\nDinheiro total gasto: R$", preco_total)
     
     elif mod == 6:
         print("Saindo do programa. Obrigado!")
