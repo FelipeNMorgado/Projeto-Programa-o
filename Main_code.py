@@ -1,4 +1,5 @@
 import os
+os.system("cls")
 
 biblioteca = {}
 preco_total = 0
@@ -8,14 +9,18 @@ cont = 0
 while True:
     print("--" * 40)
     mod = int(input("Pressione o número correspondente à alteração que deseja:\n\n[1]-Adicionar\n[2]-Excluir\n[3]-Atualizar\n[4]-Visualizar\n[5]-Dinheiro Gasto\n[6]-Parar\n\nDigite aqui a sua opção: "))
+    os.system("cls")
+    
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
     
     if mod == 1:
+        os.system("cls")
         cat_add = input("Categoria do livro: ")
         livro_name = input("Nome do livro: ")
         livro_autor = input("Autor do livro: ")
         livro_preco = int(input("Preço do livro: "))
         livro = {"nome": livro_name, "autor": livro_autor, "preço": livro_preco}
-        
+        print("\nLivro adicionado com sucesso!")
         
         if cat_add in biblioteca:
             biblioteca[cat_add].append(livro)
@@ -29,18 +34,46 @@ while True:
         
         cont += 1
 
-        print("Livro adicionado com sucesso!")
         preco_total += livro_preco
+        
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
     
     elif mod == 2:
         os.system("cls")
-        option_2 = input("Digite o nome do livro que você deseja excluir: ")
-        # Adicione aqui a lógica para excluir o livro
         
+        print("Categorias disponiveis: \n")
+
+        for x in range(cont):
+            print('-',lista_cat[x])
+
+        print()
+        cat_remove = input("Digite a categoria do livro que você deseja remover: ")
+        
+        if cat_remove in biblioteca:
+            print(f"\nCategoria: {cat_remove}")
+            print("\nLivros:\n")
+            for livro in biblioteca[cat_remove]:
+                print(f"Nome: {livro['nome']}")
+                
+            livro_remove = input("\nDigite o livro que você deseja remover: ")
+                
+            if livro['nome'] == livro_remove:
+                biblioteca[cat_remove].remove(livro)
+                print(f"\nLivro '{livro_remove}' removido com sucesso!")
+                preco_total -= livro['preço']
+            else:
+                print(f"O livro {livro_remove} não foi encontrado!")
+        else:
+            print(f"A categoria {cat_remove} não foi encontrada!")
+
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+
     elif mod == 3:
-        print("Opção de atualizar. Adicione a lógica conforme necessário.")
-        # Adicione aqui a lógica para alterar as informações do livro
+        livro_subst = print("Digite o livro que você deseja atualizar: ")
+        
     
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+
     elif mod == 4:
         os.system("cls")
         print("Categorias disponiveis: \n")
@@ -69,6 +102,8 @@ while True:
         else:
             print(f"A categoria {cat_visualizar} não foi encontrada.")
     
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+
     elif mod == 5:
         print("\nDinheiro total gasto: R$", preco_total)
     
