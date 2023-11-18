@@ -156,14 +156,21 @@ def carrinho_vizualizar():
         
 def carrinho_excluir():
     os.system("cls")
-    global preco_totalc
+    global preco_totalc, lista_carrinho 
 
     print("Livros no carrinho:\n")
-    for li
-r ni or
+    for livro in lista_carrinho:
+        print(f"Nome: {livro['nome']}")
+    
+    livro_excluir = input("\nQual livro você deseja excluir? ")
     
     for livro in lista_carrinho:
-        if rlivroC_excluir
+        if livro['nome'] == livro_excluir:
+            preco_totalc -= livro['preço']
+            lista_carrinho.remove(livro)
+            print(f"Seu livro {livro_excluir} foi excluido com sucesso!")
+        else:
+            print("Livro não encontrado")
 
 while True:
     print("--" * 40)
@@ -216,9 +223,6 @@ while True:
 
         elif escolha_carrinho == 3:
             carrinho_excluir()
-        
-   
-    #Carrinho#
     
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
