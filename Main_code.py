@@ -62,7 +62,45 @@ def excluir():
         print(f"\nA categoria {cat_remove} não foi encontrada!")
 
 
-#def atualizar():
+def atualizar():
+    os.system("cls")
+    print("Categorias disponiveis: \n")
+
+    cont_mudar = 0
+
+    for x in lista_cat:
+        print('-',x)
+
+    print()
+        
+    cat_atualizada = input("Digite a categoria do livro que você deseja atualizar: ") 
+        
+    if cat_atualizada in biblioteca:
+        print(f"\nCategoria: {cat_atualizada}")
+        print("\nLivros:\n")
+            
+        for livro in biblioteca[cat_atualizada]:
+            print(f"Nome: {livro['nome']}")
+                
+        livro_novo = input("\nDigite o livro que você deseja atualizar: ")  
+
+        for livro in biblioteca[cat_atualizada]:    
+            cont_mudar += 1
+            if livro['nome'] == livro_novo:
+                opcao_atualizar = input("\nDigite o que você deseja mudar:\n- Nome[N];\n- Autor[A];\n- Preço[P]\nSua opção: ")
+                if opcao_atualizar == 'N':
+                    livro['nome'] = input("\nNovo nome do livro: ")
+                elif opcao_atualizar == 'A':
+                    livro['autor'] = input("\nNovo autor do livro:")
+                elif opcao_atualizar == 'P':
+                    livro['preço'] = int(input("\nNovo preço do livro: "))
+                print(f"\nLivro '{livro_novo}' atualizado com sucesso!\n")
+                cont_mudar -= 10000000
+                                                        
+                if cont_mudar > 0:
+                    print("\nLivro não encontrado!")
+     
+
   
 
 #def vizualizar():
