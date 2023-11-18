@@ -3,10 +3,84 @@ os.system("cls")
 
 biblioteca = {}
 lista_cat = []
-cont = 0
-cont_remove = 0
 soma = 0
 cont_mudar = 0
+lista_carrinho = []
+preco_total = 0
+
+def adicionar():
+    os.system("cls")
+        
+    cat_add = input("Categoria do livro: ")
+    livro_name = input("Nome do livro: ")
+    livro_autor = input("Autor do livro: ")
+    livro_preco = int(input("Preço do livro: "))
+    livro = {"nome": livro_name, "autor": livro_autor, "preço": livro_preco}
+    
+    print("\nLivro adicionado com sucesso!")
+
+    if cat_add in biblioteca:
+        biblioteca[cat_add].append(livro)
+    else:
+        biblioteca[cat_add] = [livro]
+            
+    if cat_add not in lista_cat:
+        lista_cat.append(cat_add)
+        
+
+def excluir():
+    os.system("cls")
+    global preco_total
+    cont_remove = 0
+
+    print("Categorias disponiveis: \n")
+
+    for x in lista_cat:
+        print('-',x)
+
+    print()
+    cat_remove = input("Digite a categoria do livro que você deseja remover: ")
+            
+    if cat_remove in biblioteca:
+        print(f"\nCategoria: {cat_remove}")
+        print("\nLivros:\n")
+        for livro in biblioteca[cat_remove]:
+            print(f"Nome: {livro['nome']}")
+                    
+        livro_remove = input("\nDigite o livro que você deseja remover: ")
+        for livro in biblioteca[cat_remove]:
+            cont_remove += 1   
+            if livro['nome'] == livro_remove:
+                biblioteca[cat_remove].remove(livro)
+                print(f"\nLivro '{livro_remove}' removido com sucesso!")
+                preco_total -= livro["preço"]
+                cont_remove -= 100000
+                        
+        if cont_remove > 0:
+            print(f"\nO livro {livro_remove} não foi encontrado!")
+    else:
+        print(f"\nA categoria {cat_remove} não foi encontrada!")
+
+
+#def atualizar():
+  
+
+#def vizualizar():
+    
+
+#def dinheiro_gasto():
+
+def carrinho():
+    
+    lista_carrinho.append(input("Nome do livro: "))
+    lista_carrinho.append(input("Categoria do livro: "))
+    lista_carrinho.append(input("Autor do livro: "))
+    lista_carrinho.append(int(input("Preço do livro: ")))
+
+    print("\nLivro adicionado ao carrinho com sucesso!")
+
+    return lista_carrinho
+
 
 while True:
     print("--" * 40)
@@ -16,61 +90,13 @@ while True:
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
     
     if mod == 1: 
-        os.system("cls")
-        
-        cat_add = input("Categoria do livro: ")
-        livro_name = input("Nome do livro: ")
-        livro_autor = input("Autor do livro: ")
-        livro_preco = int(input("Preço do livro: "))
-        livro = {"nome": livro_name, "autor": livro_autor, "preço": livro_preco}
-        print("\nLivro adicionado com sucesso!")
-
-        if cat_add in biblioteca:
-            biblioteca[cat_add].append(livro)
-        else:
-            biblioteca[cat_add] = [livro]
-        
-        if cat_add in lista_cat:
-            continue
-        else:
-            lista_cat.append(cat_add)
-            cont += 1
+        adicionar()
             
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
     
     elif mod == 2:
-        os.system("cls")
-
-        cont_remove = 0
-
-        print("Categorias disponiveis: \n")
-
-        for x in range(cont):
-            print('-',lista_cat[x])
-
-        print()
-        cat_remove = input("Digite a categoria do livro que você deseja remover: ")
-        
-        if cat_remove in biblioteca:
-            print(f"\nCategoria: {cat_remove}")
-            print("\nLivros:\n")
-            for livro in biblioteca[cat_remove]:
-                print(f"Nome: {livro['nome']}")
-                
-            livro_remove = input("\nDigite o livro que você deseja remover: ")
-            for livro in biblioteca[cat_remove]:
-                cont_remove += 1   
-                if livro['nome'] == livro_remove:
-                    biblioteca[cat_remove].remove(livro)
-                    print(f"\nLivro '{livro_remove}' removido com sucesso!")
-                    preco_total -= livro['preço']
-                    cont_remove -= 100000
-                    
-            if cont_remove > 0:
-                    print(f"\nO livro {livro_remove} não foi encontrado!")
-        else:
-            print(f"\nA categoria {cat_remove} não foi encontrada!")
-
+        excluir()
+    
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
     elif mod == 3:
@@ -79,8 +105,8 @@ while True:
 
         cont_mudar = 0
 
-        for x in range(cont):
-            print('-',lista_cat[x])
+        for x in lista_cat:
+            print('-',x)
 
         print()
         
@@ -117,8 +143,8 @@ while True:
         os.system("cls")
         print("Categorias disponiveis: \n")
         
-        for x in range(cont):
-            print('-',lista_cat[x])
+        for x in lista_cat:
+            print('-',x)
             
         print()
         cat_visualizar = input("Digite qual a categoria do livro que você deseja visualizar: ")
@@ -151,12 +177,29 @@ while True:
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
     elif mod == 6:
-        print("wqe")
+        os.system("cls")
+        
+        print("[1]-Adicionar livro ao carrinho")
+        print("[2]-Visualizar livros no carrinho")
+        print("[3]-Excluir livros do carrinho")
+        escolha_carrinho = int(input("\nSua escolha: "))
+        
+        if escolha_carrinho == 1:
+            carrinho()
+             
+        elif escolha_carrinho == 2:
+            for x in range(len(lista_carrinho),4):
+                print(lista_carrinho[x])
+
+        elif escolha_carrinho == 3:
+            lista_carrinho.remove(lista_carrinho[0], lista_carrinho[1], lista_carrinho[2], lista_carrinho[3])
+                    
+       
         #Carrinho#
     
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
     elif mod == 7:
         print("Saindo do programa. Obrigado!\n")
-        print("---------Volte sempre!---------\n")
+        print("-------- Volte sempre! --------\n")
         break
