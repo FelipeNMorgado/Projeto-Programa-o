@@ -1,0 +1,11 @@
+Categoria: Terror
+Nome: Lucas
+Autor: Eu
+Preço: 10
+Nome: Lucas2
+Autor: Eu
+Preço: 10
+Nome: pika
+Autor: eu
+Preço: 10
+

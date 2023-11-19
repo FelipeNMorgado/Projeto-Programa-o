@@ -1,0 +1,9 @@
+Nome: Lucas
+Categoria: Terror
+Autor: Eu
+Preço: 90
+Nome: Lucas2
+Categoria: Terror
+Autor: Eu
+Preço: 300
+

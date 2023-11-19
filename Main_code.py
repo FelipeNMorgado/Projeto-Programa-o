@@ -3,13 +3,12 @@ os.system("cls")
 
 biblioteca = {}
 lista_cat = []
-soma = 0
-cont_mudar = 0
 lista_carrinho = []
 preco_total = 0
 preco_totalc = 0
 
 def adicionar():
+    arquivo_adicionar = open("biblioteca.txt", "a", encoding="utf8")
     os.system("cls")
         
     cat_add = input("Categoria do livro: ")
@@ -27,9 +26,12 @@ def adicionar():
             
     if cat_add not in lista_cat:
         lista_cat.append(cat_add)
-        
 
+    arquivo_adicionar.write(str(f"\nNome: {livro['nome']}\nCategoria: {cat_add}\nAutor: {livro['autor']}\nPreço: {livro['preço']}"))
+    arquivo_adicionar.close()
+        
 def excluir():
+    arquivo_excluir = open("biblioteca.txt", "r+", encoding="utf8")
     os.system("cls")
     global preco_total
     cont_remove = 0
@@ -53,7 +55,7 @@ def excluir():
             cont_remove += 1   
             if livro['nome'] == livro_remove:
                 biblioteca[cat_remove].remove(livro)
-                print(f"\nLivro '{livro_remove}' removido com sucesso!")
+                print(f"\nLivro removido com sucesso!")
                 preco_total -= livro["preço"]
                 cont_remove -= 100000
                         
@@ -88,14 +90,14 @@ def atualizar():
         for livro in biblioteca[cat_atualizada]:    
             cont_mudar += 1
             if livro['nome'] == livro_novo:
-                opcao_atualizar = input("\nDigite o que você deseja mudar:\n- Nome[N];\n- Autor[A];\n- Preço[P]\nSua opção: ")
+                opcao_atualizar = input("\nDigite o que você deseja mudar:\n- Nome[N];\n- Autor[A];\n- Preço[P];\nSua opção: ")
                 if opcao_atualizar == 'N':
                     livro['nome'] = input("\nNovo nome do livro: ")
                 elif opcao_atualizar == 'A':
                     livro['autor'] = input("\nNovo autor do livro:")
                 elif opcao_atualizar == 'P':
                     livro['preço'] = int(input("\nNovo preço do livro: "))
-                print(f"\nLivro '{livro_novo}' atualizado com sucesso!\n")
+                print(f"\nLivro atualizado com sucesso!\n")
                 cont_mudar -= 10000000
                                                         
                 if cont_mudar > 0:
@@ -230,3 +232,8 @@ while True:
         print("Saindo do programa. Obrigado!\n")
         print("-------- Volte sempre! --------\n")
         break
+
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+
+    else:
+        print("\nDigite um número entre 1 e 7!")
