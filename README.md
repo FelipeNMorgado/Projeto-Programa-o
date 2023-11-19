@@ -13,11 +13,12 @@ Trabalho-Programação
             Se atente ao digitar as categorias de maneira apropriada: Ex: Terror e terror e TERROR; 
                                                                                                     O código irá criar uma categoria para cada sendo necessario se 
                                                                                                     atentar a gramtica escolhida pelo usuario.
+
 2 - Ao selecionar a opção "2":
     -Nessa oçao o codigo irá te dar as opções para esxcluir um livro especifico 
         OBS: Se planeja excluir alguma informação dentro do livro é recomendada a opção "3-Atualizar".
     
-    -Você primeiramente deve digitar a categoria que o livro está(Se atente a gramatica)
+   
     
                                                                       
 
