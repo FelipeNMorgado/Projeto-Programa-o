@@ -8,4 +8,8 @@ Preço: 10
 Nome: pika
 Autor: eu
 Preço: 10
+Categoria: Suspense
+Nome: korra
+Autor: kola
+Preço: 45
 
