@@ -2,8 +2,14 @@
 
 ## Pontos importantes para a utilização do código:
 
-+ Adicionar: Caso deseje adicionar um livro para a biblioteca
-   -  
+### 1- Adicionar /Caso deseje adicionar um livro para a biblioteca📖/
++ Será requisitado algumas informações sobre o livro para o usuario, como:
+    - Nome, Autor, Categoria(Suspense,Terror,etc..) e Preço
++ O preço deve ser inserido de maneira numérica, Ex:
+    - 18✔️ , 20✔️ , Quarenta e dois❌
++ Para adicionar uma categoria nova, é necessario somente adicionar um livro novo com essa categoria
+### 2- Excluir /Caso deseje excluir um livro da biblioteca📘/  
+       
 + description
 + repetation num
 + sequency num
