@@ -1,15 +1,49 @@
 Categoria: Terror
 Nome: Lucas
 Autor: Eu
-Preço: 10
+Preço: 40.0
 Nome: Lucas2
 Autor: Eu
-Preço: 10
+Preço: 10.0
 Nome: pika
 Autor: eu
-Preço: 10
+Preço: 10.0
+Nome: curx
+Autor: pode
+Preço: 67.0
+Nome: kolka
+Autor: pode
+Preço: 67.0
+Nome: filicidade
+Autor: opa
+Preço: 67.0
+
 Categoria: Suspense
 Nome: korra
 Autor: kola
-Preço: 45
+Preço: 45.0
+Nome: olag
+Autor: turca
+Preço: 79.0
+
+Categoria: ação
+Nome: pika
+Autor: opa
+Preço: 89.0
+Nome: poda
+Autor: ui
+Preço: 56.0
+
+Categoria: romanc
+Nome: yuca
+Autor: pode
+Preço: 67.0
+
+Categoria: Ação
+Nome: yu
+Autor: tu
+Preço: 80.0
+Nome: goll
+Autor: rua
+Preço: 80.0
 

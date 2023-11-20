@@ -1,4 +1,5 @@
 import os
+import time
 
 biblioteca = {}
 lista_cat = []
@@ -39,7 +40,7 @@ def carregar_biblioteca():
             elif line.startswith("Autor: "):
                 livro["autor"] = line.split(": ")[1]
             elif line.startswith("Preço: "):
-                livro["preço"] = int(line.split(": ")[1])
+                livro["preço"] = float(line.split(": ")[1])
                 if cat and livro["nome"] and livro["autor"] and "preço" in livro:
                     biblioteca[cat].append(livro)
                     livro = None
@@ -74,7 +75,7 @@ def carregar_carrinho():
             elif line.startswith("Autor: "):
                 autor = line.split(": ")[1]
             elif line.startswith("Preço: "):
-                preco = int(line.split(": ")[1])
+                preco = float(line.split(": ")[1])
                 lista_carrinho.append({"nome": nome, "categoria": categoria, "autor": autor, "preço": preco})
 
 
@@ -85,36 +86,70 @@ carregar_biblioteca()
 def adicionar():
     os.system("cls")
 
+    cont_add = 0
+        
     cat_add = input("Categoria do livro: ")
     livro_name = input("Nome do livro: ")
     
-    for cat_add in biblioteca:
-        for livro in biblioteca[cat_add]:
-            if livro_name == livro['nome']:
-                print("Esse livro já existe nessa categoria")
-
-
-    livro_autor = input("Autor do livro: ")
-        
     try:
-        livro_preco = int(input("Preço do livro: "))
-    except ValueError:
-        print("Por favor, insira um valor numérico para o preço.")
-        return
+        for livro in biblioteca[cat_add]:
+            if livro_name == livro["nome"]:
+                print("\nEsse livro já existe nessa categoria")
+                time.sleep(2)
+                cont_add += 1
+                adicionar()
+        if cont_add == 0:
+            livro_autor = input("Autor do livro: ")
+            while True:
+                try:
+                    livro_preco = float(input("Preço do livro: "))
+                    break
+                except ValueError:
+                    print("Por favor, insira um valor numérico para o preço.")
+                
 
-    livro = {"nome": livro_name, "autor": livro_autor, "preço": livro_preco}
+            livro = {"nome": livro_name, "autor": livro_autor, "preço": livro_preco}
 
-    print("\nLivro adicionado com sucesso!")
+            print("\nLivro adicionado com sucesso!")
+            time.sleep(2)
 
-    if cat_add in biblioteca:
-        biblioteca[cat_add].append(livro)
-    else:
-        biblioteca[cat_add] = [livro]
+            if cat_add in biblioteca:
+                biblioteca[cat_add].append(livro)
+            else:
+                biblioteca[cat_add] = [livro]
 
-    if cat_add not in lista_cat:
-        lista_cat.append(cat_add)
+            if cat_add not in lista_cat:
+                lista_cat.append(cat_add)
 
-    salvar_biblioteca()
+            salvar_biblioteca()
+
+    except:
+
+        livro_autor = input("Autor do livro: ")
+            
+        while True:
+                try:
+                    livro_preco = float(input("Preço do livro: "))
+                    break
+                except ValueError:
+                    print("Por favor, insira um valor numérico para o preço.")
+            
+
+        livro = {"nome": livro_name, "autor": livro_autor, "preço": livro_preco}
+
+        print("\nLivro adicionado com sucesso!")
+        time.sleep(2)
+
+        if cat_add in biblioteca:
+            biblioteca[cat_add].append(livro)
+        else:
+            biblioteca[cat_add] = [livro]
+
+        if cat_add not in lista_cat:
+            lista_cat.append(cat_add)
+
+        salvar_biblioteca()
+        
 
 def excluir():
     os.system("cls")
@@ -146,8 +181,10 @@ def excluir():
 
         if cont_remove > 0:
             print(f"\nO livro {livro_remove} não foi encontrado!")
+            time.sleep(1)
     else:
         print(f"\nA categoria {cat_remove} não foi encontrada!")
+        time.sleep(1)
 
     salvar_biblioteca()
 
@@ -182,12 +219,19 @@ def atualizar():
                 elif opcao_atualizar == 'A':
                     livro['autor'] = input("\nNovo autor do livro:")
                 elif opcao_atualizar == 'P':
-                    livro['preço'] = int(input("\nNovo preço do livro: "))
+                    while True:
+                        try:
+                            livro['preço'] = float(input("\nNovo preço do livro: "))
+                            break
+                        except:
+                            print("\nDigite um valor numérico!")
                 print(f"\nLivro atualizado com sucesso!\n")
                 cont_mudar -= 10000000
 
                 if cont_mudar > 0:
                     print("\nLivro não encontrado!")
+    else:
+        print("\nCategoria não encontrada")
 
     salvar_biblioteca()
 
@@ -200,6 +244,8 @@ def visualizar():
 
     print()
     cat_visualizar = input("Digite qual a categoria do livro que você deseja visualizar: ")
+    
+    os.system("cls")
 
     if cat_visualizar in biblioteca:
         print(f"\nCategoria: {cat_visualizar}")
@@ -215,39 +261,59 @@ def visualizar():
                     print(f"\nDetalhes do Livro:\nNome: {livro['nome']}\nAutor: {livro['autor']}\nPreço: {livro['preço']}")
                     break
             else:
-                print(f"O livro {livro_escolhido} não foi encontrado na categoria {cat_visualizar}.")
+                print(f"\nO livro {livro_escolhido} não foi encontrado na categoria {cat_visualizar}.")
+                time.sleep(2)
+                visualizar()
     else:
-        print(f"A categoria {cat_visualizar} não foi encontrada.")
+        print(f"\nA categoria {cat_visualizar} não foi encontrada.")
+        time.sleep(2)
+        visualizar()
+        
 
 
 def carrinho_add():
     os.system("cls")
     global lista_carrinho, preco_totalc
 
+    cont_carrrinho_add = 0
+
     livro_name = input("Nome do livro: ")
-    livro_categoria = input("Categoria do livro: ")
-    livro_autor = input("Autor do livro: ")
     
-    try:
-        livro_preco = int(input("Preço do livro: "))
-    except ValueError:
-        print("Por favor, insira um valor numérico para o preço.")
-        return
+    for livro in lista_carrinho:
+        if livro_name == livro["nome"]:
+            print("\nEsse livro já se encontra no carrinho")
+            time.sleep(1)
+            cont_carrrinho_add += 1
+            carrinho_add()
+            
+    if cont_carrrinho_add == 0:
+        livro_categoria = input("Categoria do livro: ")
+        livro_autor = input("Autor do livro: ")
 
-    livro = {"nome": livro_name, "categoria": livro_categoria, "autor": livro_autor, "preço": livro_preco}
+        try:
+            livro_preco = float(input("Preço do livro: "))
+        except ValueError:
+            print("Por favor, insira um valor numérico para o preço.")
+            return
 
-    lista_carrinho.append(livro)
+        livro = {"nome": livro_name, "categoria": livro_categoria, "autor": livro_autor, "preço": livro_preco}
 
-    print("\nLivro adicionado ao carrinho com sucesso!")
+        lista_carrinho.append(livro)
 
-    salvar_carrinho()
+        print("\nLivro adicionado ao carrinho com sucesso!")
+        time.sleep(1)
+
+        salvar_carrinho()
 
 def carrinho_visualizar():
     global lista_carrinho
+    os.system("cls")
     print("\nLivros no carrinho:")
     for livro in lista_carrinho:
         print(f"\nNome: {livro['nome']}\nCategoria: {livro['categoria']}\nAutor: {livro['autor']}\nPreço: {livro['preço']}")
         print("--" * 40 + '\n')
+
+    encerrar = input("Digite qualquer coisa para sair: ")
 
     salvar_carrinho()
 
@@ -265,11 +331,23 @@ def carrinho_excluir():
         if livro['nome'] == livro_excluir:
             preco_totalc -= livro['preço']
             lista_carrinho.remove(livro)
-            print(f"Seu livro {livro_excluir} foi excluído com sucesso!")
+            print(f"\nO livro {livro_excluir} foi excluído com sucesso!")
+            time.sleep(1)
             break
     else:
-        print("Livro não encontrado")
-
+        print("\nLivro não encontrado")
+        while True:
+            escolha_exc = input("\nDigite se você quer excluir um livro: [S] - Sim , [N] - Não: ").upper()
+            if escolha_exc == "S":
+                carrinho_excluir()
+            elif escolha_exc == "N":
+                print("\nSaindo")
+                time.sleep(1)
+                break
+            else:
+                print("\nResposta não indentificada!")
+    os.system("cls")
+            
     salvar_carrinho()
 
 while True:
@@ -334,5 +412,8 @@ while True:
         print("-------- Volte sempre! --------\n")
         break
 
+    #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+
     else:
-        print("Por favor digite um valor entre os estabelecidos anteriormente.")
+        print("\nPor favor digite um valor entre os estabelecidos anteriormente.")
+        time.sleep(2)

@@ -2,7 +2,7 @@
 # Projeto-Programa-o
 Trabalho-Programação
 
---------------------------------------------------------Manual de instruções do código------------------------------------------------------------------------------------------------
+---------------------------------------------Manual de instruçõescódigo------------------------------------------------------------------------------------------------
  Ao iniciar o código daremos 7 opções para o usuário, neste manual explicarei oque deve ser feito e respondido em cada opção. Dentro das opções digite somente números
  como desejado no código sem inserir letras ou palavras se isso acontecer o código não rodará como esperado.
 
