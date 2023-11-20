@@ -1,7 +1,7 @@
 ![26-02-imagem-blog-2](https://github.com/FelipeNMorgado/Projeto-Programa-o/assets/128396955/1561d388-075f-4c2b-a97c-42fb27a02d7a)
 
 
-### Trabalho Fundamentos de Programação 
+# Trabalho Fundamentos de Programação 
 
 ## Pontos importantes para a utilização do código:
 
