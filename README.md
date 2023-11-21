@@ -43,10 +43,7 @@
 
 * Abaixo está apresentado o fluxograma com alinha de raciocinio elaborado para o desenvolvimento do código:
 
+![Fluxograma_projeto_python drawio (1)](https://github.com/FelipeNMorgado/Projeto-Programa-o/assets/128396955/b232bfa6-d168-49ae-94aa-340706bb9d30)
 
-## This features are in developing:
-
-- Search for movements by name and/or dificulted category.
-- Email verification.
 
 
