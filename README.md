@@ -31,18 +31,18 @@
 + ⚠️!!!IMPORTANTE!!!⚠️
     - Ao modificar a informação de preço na biblioteca pela opção de atualizar a soma total será automaticamente atualizada
 ### 6-Carrinho /Armazenamento de livros que deseja obter/💡!!NOVIDADE!!💡
-+ O carrinho é uma plataforma onde você pode inserir e remover livros que deseja futuramente sabendo o quanto será gasto nessas aquisições 
-+ email
-+ cpf
-+ birth
-+ active
++ O carrinho é uma plataforma onde você pode inserir e remover livros que deseja futuramente sabendo o quanto será gasto nessas aquisições.
++ O adereço "Carrinho" possue funções muito similares as funções apresentadas no código anterirormente.
+    -Adicionar
+    -Remover
+    -Visualizar 
++ Assim mantendo sua organização financeira muito mais prática
 
-## In addition to CRUD, I implement other features such as:
 
-* See the more recently movement created, using Cookie.
-* Entire verification system to validate forms with personalized messages.
-* Message of success when create a movement, using Session Flash.
-* Profile User editable.
+## Fluxograma
+
+* Abaixo está apresentado o fluxograma com alinha de raciocinio elaborado para o desenvolvimento do código:
+
 
 ## This features are in developing:
 
