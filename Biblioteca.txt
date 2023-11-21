@@ -26,24 +26,24 @@ Nome: olag
 Autor: turca
 Preço: 79.0
 
-Categoria: ação
+Categoria: Ação
 Nome: pika
 Autor: opa
 Preço: 89.0
 Nome: poda
 Autor: ui
 Preço: 56.0
-
-Categoria: romanc
-Nome: yuca
-Autor: pode
-Preço: 67.0
-
-Categoria: Ação
 Nome: yu
 Autor: tu
 Preço: 80.0
 Nome: goll
 Autor: rua
 Preço: 80.0
+
+Categoria: Romance
+Nome: yuca
+Autor: pode
+Preço: 67.0
+
+
 
