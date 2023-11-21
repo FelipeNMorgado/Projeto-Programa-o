@@ -151,10 +151,10 @@ def adicionar():
         salvar_biblioteca()
         
 
+
 def excluir():
     os.system("cls")
     global preco_total
-    cont_remove = 0
 
     print("Categorias disponíveis: \n")
 
@@ -164,29 +164,34 @@ def excluir():
     print()
     cat_remove = input("Digite a categoria do livro que você deseja remover: ")
 
-    if cat_remove in biblioteca:
+    try:
+        livros_na_categoria = biblioteca[cat_remove]
         print(f"\nCategoria: {cat_remove}")
         print("\nLivros:\n")
-        for livro in biblioteca[cat_remove]:
+        for livro in livros_na_categoria:
             print(f"Nome: {livro['nome']}")
 
         livro_remove = input("\nDigite o livro que você deseja remover: ")
-        for livro in biblioteca[cat_remove]:
-            cont_remove += 1
-            if livro['nome'] == livro_remove:
-                biblioteca[cat_remove].remove(livro)
-                print(f"\nLivro removido com sucesso!")
-                preco_total -= livro["preço"]
-                cont_remove -= 100000
-
-        if cont_remove > 0:
-            print(f"\nO livro {livro_remove} não foi encontrado!")
+        try:
+            for livro in livros_na_categoria:
+                if livro['nome'] == livro_remove:
+                    biblioteca[cat_remove].remove(livro)
+                    print(f"\nLivro removido com sucesso!")
+                    preco_total -= livro["preço"]
+                    break
+           
+        except ValueError:
+            print("Erro: Livro não encontrado,tente novamente!")
             time.sleep(1)
-    else:
+        
+    except KeyError:
         print(f"\nA categoria {cat_remove} não foi encontrada!")
-        time.sleep(1)
+        time.sleep(1)      
 
-    salvar_biblioteca()
+    
+
+
+salvar_biblioteca()
 
 def atualizar():
     os.system("cls")
@@ -235,6 +240,9 @@ def atualizar():
 
     salvar_biblioteca()
 
+import os
+import time
+
 def visualizar():
     os.system("cls")
     print("Categorias disponíveis: \n")
@@ -247,28 +255,34 @@ def visualizar():
     
     os.system("cls")
 
-    if cat_visualizar in biblioteca:
-        print(f"\nCategoria: {cat_visualizar}")
+    try:
+        if cat_visualizar in biblioteca:
+            print(f"\nCategoria: {cat_visualizar}")
 
-        for livro in biblioteca[cat_visualizar]:
-            print(f"Nome: {livro['nome']}")
-
-        livro_escolhido = input("\nDigite o nome do livro para uma visão mais detalhada (ou '0' para voltar): ")
-
-        if livro_escolhido != '0':
             for livro in biblioteca[cat_visualizar]:
-                if livro['nome'] == livro_escolhido:
-                    print(f"\nDetalhes do Livro:\nNome: {livro['nome']}\nAutor: {livro['autor']}\nPreço: {livro['preço']}")
-                    break
+                print(f"Nome: {livro['nome']}")
+
+            livro_escolhido = input("\nDigite o nome do livro para uma visão mais detalhada (ou '0' para voltar): ")
+
+            if livro_escolhido != '0':
+                for livro in biblioteca[cat_visualizar]:
+                    if livro['nome'] == livro_escolhido:
+                        print(f"\nDetalhes do Livro:\nNome: {livro['nome']}\nAutor: {livro['autor']}\nPreço: {livro['preço']}")
+                        break
+                else:
+                    raise ValueError(f"\nO livro {livro_escolhido} não foi encontrado na categoria {cat_visualizar}.")
+
             else:
-                print(f"\nO livro {livro_escolhido} não foi encontrado na categoria {cat_visualizar}.")
+                print("\nVoltando...")
                 time.sleep(2)
-                visualizar()
-    else:
-        print(f"\nA categoria {cat_visualizar} não foi encontrada.")
+
+        else:
+            raise KeyError(f"A categoria {cat_visualizar} não foi encontrada.")
+        
+    except (KeyError, ValueError) as e:
+        print(f"Erro: {e}")
         time.sleep(2)
         visualizar()
-        
 
 
 def carrinho_add():
@@ -317,38 +331,37 @@ def carrinho_visualizar():
 
     salvar_carrinho()
 
+
 def carrinho_excluir():
-    os.system("cls")
-    global preco_totalc, lista_carrinho
+    try:
+        os.system("cls")
+        global preco_totalc, lista_carrinho
 
-    print("Livros no carrinho:\n")
-    for livro in lista_carrinho:
-        print(f"Nome: {livro['nome']}")
+        print("Livros no carrinho:\n")
+        for livro in lista_carrinho:
+            print(f"Nome: {livro['nome']}")
 
-    livro_excluir = input("\nQual livro você deseja excluir? ")
+        livro_excluir = input("\nQual livro você deseja excluir? ")
 
-    for livro in lista_carrinho:
-        if livro['nome'] == livro_excluir:
-            preco_totalc -= livro['preço']
-            lista_carrinho.remove(livro)
-            print(f"\nO livro {livro_excluir} foi excluído com sucesso!")
-            time.sleep(1)
-            break
-    else:
-        print("\nLivro não encontrado")
-        while True:
-            escolha_exc = input("\nDigite se você quer excluir um livro: [S] - Sim , [N] - Não: ").upper()
-            if escolha_exc == "S":
-                carrinho_excluir()
-            elif escolha_exc == "N":
-                print("\nSaindo")
-                time.sleep(1)
-                break
-            else:
-                print("\nResposta não indentificada!")
-    os.system("cls")
-            
-    salvar_carrinho()
+        try:
+            livro_encontrado = next(livro for livro in lista_carrinho if livro['nome'] == livro_excluir)
+        except StopIteration:
+            raise ValueError
+
+        preco_totalc -= livro_encontrado['preço']
+        lista_carrinho.remove(livro_encontrado)
+        print(f"\nO livro {livro_excluir} foi excluído com sucesso!")
+        time.sleep(1)
+
+        os.system("cls")
+
+    
+    except ValueError:
+        print(f"Erro: Livro não encontrado, Tente novamente! ")
+    
+
+
+salvar_carrinho()
 
 while True:
     while True:
