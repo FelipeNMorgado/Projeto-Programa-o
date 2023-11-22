@@ -366,8 +366,9 @@ salvar_carrinho()
 while True:
     while True:
         try:
-            print("--" * 40)
+            print(("--" * 13),"Menu",("--" * 13))
             mod = int(input("Pressione o número correspondente à alteração que deseja:\n\n[1]-Adicionar\n[2]-Excluir\n[3]-Atualizar\n[4]-Visualizar\n[5]-Dinheiro Gasto\n[6]-Carrinho\n[7]-Parar\n\nDigite aqui a sua opção: "))
+            print("--" * 26)
             break
         except ValueError:
             print("Por favor digite um valor entre os estabelecidos anteriormente.")
@@ -420,7 +421,6 @@ while True:
     elif mod == 7:
         salvar_biblioteca()
         salvar_carrinho()
-        print("Dados salvos nos arquivos 'biblioteca.txt' e 'carrinho.txt'.")
         print("Saindo do programa. Obrigado!\n")
         print("-------- Volte sempre! --------\n")
         break
