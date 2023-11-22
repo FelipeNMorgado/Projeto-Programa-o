@@ -45,5 +45,3 @@ Nome: yuca
 Autor: pode
 Preço: 67.0
 
-
-
