@@ -2,17 +2,18 @@ Categoria: Ação
 Nome: Game of thrones
 Autor: George rr martin
 Preço: 50.0
-Nome: O nome do vento
+Nome: Lucas 1
 Autor:  Patrick Rothfuss
-Preço: 80.0
+Preço: 45.5
 
 Categoria: Informatica
-Nome: Futuro presente
-Autor: Guy Perelmuter
-Preço: 60.0
 
 Categoria: Manga
 Nome: One piece
 Autor: Eichiro Oda
 Preço: 20.0
+
+Categoria: Terror
+
+Categoria: Drama
 

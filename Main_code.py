@@ -318,19 +318,24 @@ def atualizar():
             if livro['nome'] == livro_novo:
                 #solicita a opção de atualização
                 cont_mudar += 1
-                opcao_atualizar = input("\nDigite o que você deseja mudar:\n- Nome[N];\n- Autor[A];\n- Preço[P];\nSua opção: ")
+                while True:
+                    opcao_atualizar = input("\nDigite o que você deseja mudar:\n- Nome[N];\n- Autor[A];\n- Preço[P];\nSua opção: ")
                 
-                if opcao_atualizar == 'N':
-                    livro['nome'] = input("\nNovo nome do livro: ")
-                elif opcao_atualizar == 'A':
-                    livro['autor'] = input("\nNovo autor do livro:")
-                elif opcao_atualizar == 'P':
-                    while True:
-                        try:
-                            livro['preço'] = float(input("\nNovo preço do livro: "))
-                            break
-                        except ValueError:
-                            print("\nDigite um valor numérico!")
+                    if opcao_atualizar == 'N' or opcao_atualizar == 'n':
+                        livro['nome'] = input("\nNovo nome do livro: ")
+                        break
+                    elif opcao_atualizar == 'A' or opcao_atualizar == 'a':
+                        livro['autor'] = input("\nNovo autor do livro:")
+                        break
+                    elif opcao_atualizar == 'P' or opcao_atualizar == 'p':
+                        while True:
+                            try:
+                                livro['preço'] = float(input("\nNovo preço do livro: "))
+                                break
+                            except ValueError:
+                                print("\nDigite um valor numérico!")
+                    else:
+                        print("\nOpção invalida")
                 
                 print(f"\nLivro atualizado com sucesso!\n")
                 cont_mudar -= 10000000
